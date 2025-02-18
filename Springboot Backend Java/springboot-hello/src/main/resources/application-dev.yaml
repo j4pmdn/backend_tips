@@ -1,9 +1,2 @@
-server.port=8008
-
-database.host=host
-database.username=username
-database.port=3306
-database.passwor=password
-
-player.username=TipsJava
-player.age=40
+server:
+  port: 8002
