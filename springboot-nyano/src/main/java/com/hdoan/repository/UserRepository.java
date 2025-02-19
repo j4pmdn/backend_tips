@@ -5,12 +5,10 @@ package com.hdoan.repository;/*
 
 import com.hdoan.entity.user.UserEntity;
 import jakarta.transaction.Transactional;
-import org.apache.catalina.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.RepositoryDefinition;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
@@ -37,7 +35,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long>, JpaSpec
     /**
      * WHERE userName LIKE ?%
      */
-    List<UserEntity> findByUserNameEndingWithWith(String userName);
+    List<UserEntity> findByUserNameEndingWith(String userName);
 
     /**
      * WHERE id < 1
