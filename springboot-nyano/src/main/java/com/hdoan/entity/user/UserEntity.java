@@ -3,10 +3,14 @@ package com.hdoan.entity.user;/*
  * @author Huy
  */
 
+import com.hdoan.entity.feed.FeedEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -31,4 +35,12 @@ public class UserEntity {
     @Column(columnDefinition = "VARCHAR(255) comment 'user email'", nullable = false, unique = true)
     private String userEmail;
 
+    // 1 user -> many feeds
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)  // orphanRemoval -> nếu Feed ko có user -> auto delete
+    @ToString.Exclude
+    private List<FeedEntity> feeds;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cccd_id")
+    private CCCDEntity cccd;
 }
