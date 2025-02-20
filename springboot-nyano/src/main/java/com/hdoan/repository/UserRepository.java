@@ -5,6 +5,8 @@ package com.hdoan.repository;/*
 
 import com.hdoan.entity.user.UserEntity;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -16,6 +18,11 @@ import java.util.List;
 // Annnottation @Repository is not necessary
 // @RepositoryDefinition(domainClass = UserEntity.class, idClass = Long.class)
 public interface UserRepository extends JpaRepository<UserEntity, Long>, JpaSpecificationExecutor<UserEntity> {
+
+    // use pageable
+    Page<UserEntity> findByUserName(String name, Pageable pageable);
+    Page<UserEntity> findByUserNameContaining(String name, Pageable pageable);
+
     // find username vs userEmail
     // findByUserNameAndUserEmail
     // UserNameAndUserEmail
@@ -25,7 +32,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long>, JpaSpec
     UserEntity findByUserNameAndUserEmail(String userName, String userEmail);
 
     // userName
-    UserEntity findByUserName(String userName);
+    //UserEntity findByUserName(String userName);
 
     /**
      * WHERE userName LIKE %?
