@@ -3,5 +3,8 @@ package com.hdoan.repository;/*
  * @author Huy
  */
 
-public interface OrderRepository {
+import com.hdoan.entity.OrderEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 }
